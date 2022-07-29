@@ -12,72 +12,6 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
-        "HashCode": -1924417996,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.Pages.Counter",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Counter"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Pages.Counter"
-        }
-      },
-      {
-        "HashCode": 454174113,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.Pages.Counter",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Backrooms.Pages.Counter"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Pages.Counter",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": 1190790367,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.Pages.FetchData",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "FetchData"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Pages.FetchData"
-        }
-      },
-      {
-        "HashCode": 2000116649,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.Pages.FetchData",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Backrooms.Pages.FetchData"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Pages.FetchData",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": 457512061,
         "Kind": "Components.Component",
         "Name": "Backrooms.Pages.Index",
@@ -107,6 +41,39 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "Backrooms.Pages.Index",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1681506808,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.App",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "App"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.App"
+        }
+      },
+      {
+        "HashCode": -1184353634,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.App",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Backrooms.App"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.App",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -203,72 +170,6 @@
           "Runtime.Name": "Components.None",
           "Common.TypeName": "Backrooms.Shared.MainLayout.Body",
           "Components.IsSpecialKind": "Components.ChildContent",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": 892487846,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.Shared.NavMenu",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "NavMenu"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Shared.NavMenu"
-        }
-      },
-      {
-        "HashCode": 1430118153,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.Shared.NavMenu",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Backrooms.Shared.NavMenu"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Shared.NavMenu",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -1681506808,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.App",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "App"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.App"
-        }
-      },
-      {
-        "HashCode": -1184353634,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.App",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Backrooms.App"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.App",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -89847,23 +89748,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Pages\\Counter.razor",
-      "TargetPath": "Pages\\Counter.razor",
-      "FileKind": "component"
-    },
-    {
-      "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Pages\\FetchData.razor",
-      "TargetPath": "Pages\\FetchData.razor",
-      "FileKind": "component"
-    },
-    {
       "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Shared\\MainLayout.razor",
       "TargetPath": "Shared\\MainLayout.razor",
-      "FileKind": "component"
-    },
-    {
-      "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Shared\\NavMenu.razor",
-      "TargetPath": "Shared\\NavMenu.razor",
       "FileKind": "component"
     },
     {

@@ -1,10 +1,56 @@
 ﻿@page "/"
-
 <PageTitle>Index</PageTitle>
 
 <MudText Typo="Typo.h3" GutterBottom="true">Backrooms</MudText>
 <MudText Class="mb-8">Bot pozwalający na tworzenie stref prywatnych!</MudText>
 <MudText Class="mb-8">
-    <MudFab Class="mr-3" Color="Color.Info" Href="https://discord.gg/apHpSwN6tV" Label="Dołącz na discorda" StartIcon="@Icons.Custom.Brands.Discord">dfdff</MudFab>
-    <MudFab Color="Color.Primary" Href="https://discord.com/api/oauth2/authorize?client_id=1000188282841350144&permissions=8&scope=applications.commands%20bot" Label="Dodaj bota" StartIcon="@Icons.Material.Filled.Download">dfdff</MudFab>
+    <MudFab Class="mb-3" Color="Color.Primary" Href="https://discord.com/api/oauth2/authorize?client_id=1000188282841350144&permissions=8&scope=applications.commands%20bot" Label="Dodaj bota" StartIcon="@Icons.Material.Filled.Download"></MudFab>
 </MudText>
+
+<MudDivider class="mb-10" />
+
+<MudPaper Height="auto" Width="100%">
+    <MudContainer MaxWidth="MaxWidth.Large" Class="pt-10" style="word-break: break-all;">
+        <MudText Typo="Typo.h5" GutterBottom="true">Szybka obsługa - Komendy</MudText>
+    </MudContainer>
+    <MudContainer MaxWidth="MaxWidth.Large" Class="pb-10" style="word-break: break-all;">
+        <MudTabs Outlined="true" Position="Position.Left" Rounded="true" Border="true"
+            ApplyEffectsToContainer="true" Class="mt-8" PanelClass="pa-6">
+            <MudTabPanel Text="/starter">
+                <MudText>
+                    <b>/starter - </b>utworzy kategorię z dwoma domyślnymi kanałami<br>
+                    <b>&nbsp;• #how-to-use</b> - kanał z instrukcją dotyczącą tworzenia pokoi<br>
+                    <b>&nbsp;• #utwórz</b> - kanał gdzie możesz stworzyć prywatny pokój<br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Dostęp do tej komendy mają tylko administratorzy.</MudChip><br>
+                </MudText>
+            </MudTabPanel>
+            <MudTabPanel Text="/add">
+                <MudText>
+                    <b>/add &lt;user&gt; -</b> dodaje osobę do pokoju<br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko przez właściciela pokoju</MudChip><br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Secondary">Można korzystać tylko na kanale konfiguracyjnym danego pokoju</MudChip>
+                </MudText>
+            </MudTabPanel>
+            <MudTabPanel Text="/remove">
+                <MudText>
+                    <b>/remove &lt;user&gt; - </b>usuwa dostęp do prywatnej sesji danej osoby <br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko przez właściciela pokoju</MudChip><br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Secondary">Można korzystać tylko na kanale konfiguracyjnym danego pokoju</MudChip>
+                </MudText>
+            </MudTabPanel>
+            <MudTabPanel Text="/list">
+                <MudText>
+                    <b>/list - </b>wypisuje listę osób w danym pokoju<br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko przez właściciela pokoju</MudChip><br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Secondary">Można korzystać tylko na kanale konfiguracyjnym danego pokoju</MudChip>
+                </MudText>
+            </MudTabPanel>
+            <MudTabPanel Text="/clear">
+                <MudText>
+                    <b>/clear - </b>czyści wybraną ilość wiadomości<br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko przez właściciela pokoju</MudChip><br>
+                </MudText>
+            </MudTabPanel>
+        </MudTabs>
+    </MudContainer>
+</MudPaper>
