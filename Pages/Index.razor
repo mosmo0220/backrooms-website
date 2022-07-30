@@ -11,7 +11,7 @@
         Label="Dodaj bota" StartIcon="@Icons.Material.Filled.Download"></MudFab>
     @if(user != null){
     <MudFab Class="mb-3 mr-3" Color="Color.Info"
-        Href="@configureURL(user.id)"
+        Href="konfiguruj"
         Label="Konfiguruj bota" StartIcon="@Icons.Material.Filled.Login"></MudFab>
         <div Class="d-flex mb-3 align-items-center h-auto">
             <MudAvatar Image="@user.avatar_url" /> &nbsp;&nbsp;<MudText class="align-middle" Typo="Typo.h6" style="line-height: 40px">@(user.username)#@(user.discriminator)</MudText>
@@ -103,9 +103,5 @@
                 }
             }
         }
-    }
-
-    public string configureURL(string id){
-        return $"/konfiguruj/{id}";
     }
 }
