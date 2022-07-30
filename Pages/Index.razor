@@ -11,20 +11,42 @@
     <MudFab Class="mb-3 mr-3" Color="Color.Primary"
         Href="https://discord.com/api/oauth2/authorize?client_id=1000188282841350144&permissions=8&scope=applications.commands%20bot"
         Label="Dodaj bota" StartIcon="@Icons.Material.Filled.Download"></MudFab>
-    @if(user != null){
-    <MudFab Class="mb-3 mr-3" Color="Color.Info"
-        Href="konfiguruj"
-        Label="Konfiguruj bota" StartIcon="@Icons.Material.Filled.Login"></MudFab>
+    @if (user != null)
+    {
+        <MudFab Class="mb-3 mr-3" Color="Color.Info" Href="konfiguruj" Label="Konfiguruj bota"
+        StartIcon="@Icons.Material.Filled.Login"></MudFab>
         <div Class="d-flex mb-3 align-items-center h-auto">
-            <MudAvatar Image="@user.avatar_url" /> &nbsp;&nbsp;<MudText class="align-middle" Typo="Typo.h6" style="line-height: 40px">@(user.username)#@(user.discriminator)</MudText>
+            <MudAvatar Image="@user.avatar_url" /> &nbsp;&nbsp;<MudText class="align-middle" Typo="Typo.h6"
+            style="line-height: 40px">@(user.username)#@(user.discriminator)</MudText>
         </div>
-    } else {
-            <MudFab Class="mb-3" Color="Color.Info"
+    }
+    else
+    {
+        <MudFab Class="mb-3" Color="Color.Info"
         Href="https://discord.com/api/oauth2/authorize?client_id=1000188282841350144&redirect_uri=http%3A%2F%2Flocalhost%3A5000&response_type=code&scope=identify%20guilds%20guilds.members.read"
         Label="Zaloguj sie" StartIcon="@Icons.Material.Filled.Login"></MudFab>
     }
 
 </MudText>
+
+@if (roomsList != null)
+{
+    <MudGrid class="mb-3">
+        @foreach (var item in roomsList)
+        {
+            <MudItem xs="6">
+                <MudCard>
+                    <MudCardContent>
+                        <MudText>@item.name</MudText>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Text" Color="Color.Info">Konfiguruj</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        }
+    </MudGrid>
+}
 
 <MudDivider class="mb-10" />
 
@@ -81,13 +103,9 @@
         </MudTabs>
     </MudContainer>
 </MudPaper>
-
-@if (db != null){
-    <p>@db.id</p>
-    <p>@db.</p>
-}
 @code {
     UserData user;
+    List<RoomsData> roomsList;
     RoomsData db;
     [Parameter]
     [SupplyParameterFromQuery(Name = "code")]
@@ -99,19 +117,22 @@
         {
             string jsonString = await _UserService.GetToken(codeString);
             DiscordToken jsonToken = JsonSerializer.Deserialize<DiscordToken>(jsonString);
-            if(jsonToken.access_token != null){
+            if (jsonToken.access_token != null)
+            {
                 string jsonString2 = await _UserService.GetData(jsonToken);
                 UserData jsonUser = JsonSerializer.Deserialize<UserData>(jsonString2);
-                if(jsonUser.id != null){
+                if (jsonUser.id != null)
+                {
                     user = jsonUser;
                     user.avatar_url = $"https://cdn.discordapp.com/avatars/{user.id}/{user.avatar}";
-                } else {
+                }
+                else
+                {
                     user = null;
                 }
+                db = new RoomsData();
+                roomsList = await _dbconnService.GetRoomsData(user.id);
             }
-
-            db = new RoomsData();
-            db = await _dbconnService.GetRoomsData(user.id);
         }
     }
 }

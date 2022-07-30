@@ -1,11 +1,18 @@
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
 namespace Backrooms.Data {
+    [BsonIgnoreExtraElements]
     public class RoomsData {
-        public string id { get; set; }
+        [BsonId]
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        public ObjectId id { get; set; }
+        public string name { get; set; }
         public string owner { get; set; }
     }
     public class SchemaData {
-        public string id { get; set; }
+        [BsonId]
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        public ObjectId id { get; set; }
     }
 }
