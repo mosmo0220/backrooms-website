@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject IJSRuntime JSRuntime
 @using Backrooms.Data
 @using System.Text.Json
 @inject UserDataService _UserService
@@ -14,7 +15,9 @@
     @if (user != null)
     {
         <MudFab Class="mb-3 mr-3" Color="Color.Info" Href="konfiguruj" Label="Konfiguruj bota"
-        StartIcon="@Icons.Material.Filled.Login"></MudFab>
+        StartIcon="@Icons.Material.Filled.Settings"></MudFab>
+        <MudFab Class="mb-3 mr-3" Color="Color.Error" Href="wyloguj" Label="Wyloguj sie"
+        StartIcon="@Icons.Material.Filled.Logout"></MudFab>
         <div Class="d-flex mb-3 align-items-center h-auto">
             <MudAvatar Image="@user.avatar_url" /> &nbsp;&nbsp;<MudText class="align-middle" Typo="Typo.h6"
             style="line-height: 40px">@(user.username)#@(user.discriminator)</MudText>
@@ -23,30 +26,11 @@
     else
     {
         <MudFab Class="mb-3" Color="Color.Info"
-        Href="https://discord.com/api/oauth2/authorize?client_id=1000188282841350144&redirect_uri=http%3A%2F%2Flocalhost%3A5000&response_type=code&scope=identify%20guilds%20guilds.members.read"
+        Href="https://discord.com/api/oauth2/authorize?client_id=1000188282841350144&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Flogin-callback&response_type=code&scope=identify%20guilds%20guilds.members.read"
         Label="Zaloguj sie" StartIcon="@Icons.Material.Filled.Login"></MudFab>
     }
 
 </MudText>
-
-@if (roomsList != null)
-{
-    <MudGrid class="mb-3">
-        @foreach (var item in roomsList)
-        {
-            <MudItem xs="6">
-                <MudCard>
-                    <MudCardContent>
-                        <MudText>@item.name</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Text" Color="Color.Info">Konfiguruj</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-        }
-    </MudGrid>
-}
 
 <MudDivider class="mb-10" />
 
@@ -103,36 +87,44 @@
         </MudTabs>
     </MudContainer>
 </MudPaper>
+
 @code {
     UserData user;
-    List<RoomsData> roomsList;
-    RoomsData db;
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "code")]
-    public string codeString { get; set; }
+    public string GenerateToken()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        var random = new Random();
+        return new string(Enumerable.Repeat(chars, 32)
+        .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+
+    private async void CreateCookie(string name, string value, int days)
+    {
+        var test = await JSRuntime.InvokeAsync<string>("methods.CreateCookie", name, value, days);
+    }
+
+    private async Task<string> GetCookie(string name)
+    {
+        var test = await JSRuntime.InvokeAsync<string>("methods.GetCookie", name);
+        return test;
+    }
 
     protected override async Task OnInitializedAsync()
     {
-        if (codeString != null)
+        user = null;
+        string _token = await GetCookie("token");
+
+        if (_token == null)
         {
-            string jsonString = await _UserService.GetToken(codeString);
-            DiscordToken jsonToken = JsonSerializer.Deserialize<DiscordToken>(jsonString);
-            if (jsonToken.access_token != null)
-            {
-                string jsonString2 = await _UserService.GetData(jsonToken);
-                UserData jsonUser = JsonSerializer.Deserialize<UserData>(jsonString2);
-                if (jsonUser.id != null)
-                {
-                    user = jsonUser;
-                    user.avatar_url = $"https://cdn.discordapp.com/avatars/{user.id}/{user.avatar}";
-                }
-                else
-                {
-                    user = null;
-                }
-                db = new RoomsData();
-                roomsList = await _dbconnService.GetRoomsData(user.id);
-            }
+            _token = GenerateToken();
+            CreateCookie("token", _token, 4);
+        }
+
+        Session session = await _dbconnService.GetSession(_token);
+        if (session != null)
+        {
+            user = session.user;
         }
     }
 }
+

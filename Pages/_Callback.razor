@@ -1,0 +1,90 @@
+@page "/login-callback"
+@inject IJSRuntime JSRuntime
+@using Backrooms.Data
+@using System.Text.Json
+@inject UserDataService _UserService
+@inject dbconnService _dbconnService
+@inject NavigationManager _navManager
+
+<MudProgressCircular Size="Size.Large" Color="Color.Primary" Indeterminate="true" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;" />
+
+@code {
+    UserData user;
+    List<RoomsData> roomsList;
+    RoomsData db;
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "code")]
+    public string codeString { get; set; }
+    public string GenerateToken()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        var random = new Random();
+        return new string(Enumerable.Repeat(chars, 32)
+        .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+
+    private async void CreateCookie(string name, string value, int days)
+    {
+        var test = await JSRuntime.InvokeAsync<string>("methods.CreateCookie", name, value, days);
+    }
+
+    private async Task<string> GetCookie(string name)
+    {
+        var test = await JSRuntime.InvokeAsync<string>("methods.GetCookie", name);
+        return test;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = null;
+        roomsList = null;
+        string _token = await GetCookie("token");
+
+        if (_token == null)
+        {
+            _token = GenerateToken();
+            CreateCookie("token", _token, 1);
+        }
+
+        Session session = await _dbconnService.GetSession(_token);
+        if (session != null)
+        {
+            user = session.user;
+            roomsList = session.rooms;
+        }
+
+        if (codeString != null)
+        {
+            string jsonString = await _UserService.GetToken(codeString);
+            DiscordToken jsonToken = JsonSerializer.Deserialize<DiscordToken>(jsonString);
+            if (jsonToken.access_token != null)
+            {
+                string jsonString2 = await _UserService.GetData(jsonToken);
+                UserData jsonUser = JsonSerializer.Deserialize<UserData>(jsonString2);
+                if (jsonUser.id != null)
+                {
+                    user = jsonUser;
+                    user.avatar_url = $"https://cdn.discordapp.com/avatars/{user.id}/{user.avatar}";
+                }
+                else
+                {
+                    user = null;
+                }
+                db = new RoomsData();
+                roomsList = await _dbconnService.GetRoomsData(user.id);
+
+                var token = GenerateToken();
+
+                await _dbconnService.SaveSession(new Session()
+                {
+                    rooms = roomsList,
+                    user = user,
+                    token = token
+                });
+
+                CreateCookie("token", token, 4);
+            }
+        }
+        _navManager.NavigateTo("/");
+    }
+}

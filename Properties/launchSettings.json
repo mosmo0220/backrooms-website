@@ -21,7 +21,8 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "MONGODB_URI": "mongodb+srv://mosmo0220:rf6w29Drdbhie1pl@cluster0.0aenioa.mongodb.net/?retryWrites=true&w=majority"
       }
     }
   }

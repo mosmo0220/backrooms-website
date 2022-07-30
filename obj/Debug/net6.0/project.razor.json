@@ -12,7 +12,93 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
-        "HashCode": 1400813159,
+        "HashCode": -685877667,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages.Configure",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Configure"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages.Configure"
+        }
+      },
+      {
+        "HashCode": 2099322004,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages.Configure",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Backrooms.Pages.Configure"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages.Configure",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -128579619,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages._Callback",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "_Callback"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "codeString",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "codeString"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages._Callback"
+        }
+      },
+      {
+        "HashCode": 1768400021,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages._Callback",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Backrooms.Pages._Callback"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "codeString",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "codeString"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages._Callback",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1183670830,
         "Kind": "Components.Component",
         "Name": "Backrooms.Pages.Index",
         "AssemblyName": "Backrooms",
@@ -22,23 +108,13 @@
             "TagName": "Index"
           }
         ],
-        "BoundAttributes": [
-          {
-            "Kind": "Components.Component",
-            "Name": "codeString",
-            "TypeName": "System.String",
-            "Metadata": {
-              "Common.PropertyName": "codeString"
-            }
-          }
-        ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "Backrooms.Pages.Index"
         }
       },
       {
-        "HashCode": -1220529284,
+        "HashCode": -1041681855,
         "Kind": "Components.Component",
         "Name": "Backrooms.Pages.Index",
         "AssemblyName": "Backrooms",
@@ -48,19 +124,42 @@
             "TagName": "Backrooms.Pages.Index"
           }
         ],
-        "BoundAttributes": [
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages.Index",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 4462208,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages._Logout",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
           {
-            "Kind": "Components.Component",
-            "Name": "codeString",
-            "TypeName": "System.String",
-            "Metadata": {
-              "Common.PropertyName": "codeString"
-            }
+            "TagName": "_Logout"
           }
         ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Pages.Index",
+          "Common.TypeName": "Backrooms.Pages._Logout"
+        }
+      },
+      {
+        "HashCode": -599540481,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages._Logout",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Backrooms.Pages._Logout"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages._Logout",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -89758,6 +89857,11 @@
   "RootNamespace": "Backrooms",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Pages\\_Logout.razor",
+      "TargetPath": "Pages\\_Logout.razor",
+      "FileKind": "component"
+    },
+    {
       "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Pages\\Error.cshtml",
       "TargetPath": "Pages\\Error.cshtml",
       "FileKind": "mvc"
@@ -89773,6 +89877,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Pages\\Configure.razor",
+      "TargetPath": "Pages\\Configure.razor",
+      "FileKind": "component"
+    },
+    {
       "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Shared\\MainLayout.razor",
       "TargetPath": "Shared\\MainLayout.razor",
       "FileKind": "component"
@@ -89780,6 +89889,11 @@
     {
       "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Pages\\Index.razor",
       "TargetPath": "Pages\\Index.razor",
+      "FileKind": "component"
+    },
+    {
+      "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Pages\\_Callback.razor",
+      "TargetPath": "Pages\\_Callback.razor",
       "FileKind": "component"
     },
     {

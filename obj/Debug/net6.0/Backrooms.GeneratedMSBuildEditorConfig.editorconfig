@@ -19,8 +19,20 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Kaude/Documents/GitHub/backrooms-website/Pages/Configure.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uZmlndXJlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Kaude/Documents/GitHub/backrooms-website/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Kaude/Documents/GitHub/backrooms-website/Pages/_Callback.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0NhbGxiYWNrLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Kaude/Documents/GitHub/backrooms-website/Pages/_Logout.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xvZ291dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Kaude/Documents/GitHub/backrooms-website/Shared/MainLayout.razor]
