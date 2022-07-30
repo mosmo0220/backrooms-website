@@ -10,8 +10,7 @@
 
 @code {
     UserData user;
-    List<RoomsData> roomsList;
-    RoomsData db;
+    
     [Parameter]
     [SupplyParameterFromQuery(Name = "code")]
     public string codeString { get; set; }
@@ -37,7 +36,6 @@
     protected override async Task OnInitializedAsync()
     {
         user = null;
-        roomsList = null;
         string _token = await GetCookie("token");
 
         if (_token == null)
@@ -50,7 +48,6 @@
         if (session != null)
         {
             user = session.user;
-            roomsList = session.rooms;
         }
 
         if (codeString != null)
@@ -70,14 +67,11 @@
                 {
                     user = null;
                 }
-                db = new RoomsData();
-                roomsList = await _dbconnService.GetRoomsData(user.id);
 
                 var token = GenerateToken();
 
                 await _dbconnService.SaveSession(new Session()
                 {
-                    rooms = roomsList,
                     user = user,
                     token = token
                 });

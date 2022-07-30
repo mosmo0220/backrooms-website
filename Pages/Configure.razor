@@ -8,7 +8,7 @@
 
 <PageTitle>Konfiguracja</PageTitle>
 <MudText Typo="Typo.h3" GutterBottom="true">Konfiguracja</MudText>
-@if (roomsList != null)
+@if (roomsList != null && roomsList.Count > 0)
 {
     <MudGrid class="mb-3">
         @foreach (var item in roomsList)
@@ -26,8 +26,13 @@
         }
     </MudGrid>
 }
+else
+{
+    <MudText Typo="Typo.h5" GutterBottom="true">Nie posiadasz żadnych pokoi</MudText>
+}
 
 @code {
+    UserData user;
     List<RoomsData> roomsList;
     
     public string GenerateToken()
@@ -51,6 +56,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        user = null;
         roomsList = null;
         string _token = await GetCookie("token");
 
@@ -63,7 +69,8 @@
         Session session = await _dbconnService.GetSession(_token);
         if (session != null)
         {
-            roomsList = session.rooms;
+            user = session.user;
+            roomsList = await _dbconnService.GetRoomsData(user.id);
         }
         else 
         {

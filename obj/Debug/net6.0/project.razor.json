@@ -12,6 +12,72 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
+        "HashCode": -1183670830,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages.Index",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Index"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages.Index"
+        }
+      },
+      {
+        "HashCode": -1041681855,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages.Index",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Backrooms.Pages.Index"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages.Index",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 4462208,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages._Logout",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "_Logout"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages._Logout"
+        }
+      },
+      {
+        "HashCode": -599540481,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages._Logout",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Backrooms.Pages._Logout"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages._Logout",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": -685877667,
         "Kind": "Components.Component",
         "Name": "Backrooms.Pages.Configure",
@@ -94,72 +160,6 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "Backrooms.Pages._Callback",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -1183670830,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.Pages.Index",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Index"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Pages.Index"
-        }
-      },
-      {
-        "HashCode": -1041681855,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.Pages.Index",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Backrooms.Pages.Index"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Pages.Index",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": 4462208,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.Pages._Logout",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "_Logout"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Pages._Logout"
-        }
-      },
-      {
-        "HashCode": -599540481,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.Pages._Logout",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Backrooms.Pages._Logout"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Pages._Logout",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
