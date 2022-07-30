@@ -1,7 +1,9 @@
 ﻿@page "/"
 @using Backrooms.Data
-@using System.Text.Json;
+@using System.Text.Json
 @inject UserDataService _UserService
+@inject dbconnService _dbconnService
+
 <PageTitle>Index</PageTitle>
 <MudText Typo="Typo.h3" GutterBottom="true">Backrooms</MudText>
 <MudText Class="mb-8">Bot pozwalający na tworzenie stref prywatnych!</MudText>
@@ -80,8 +82,13 @@
     </MudContainer>
 </MudPaper>
 
+@if (db != null){
+    <p>@db.id</p>
+    <p>@db.</p>
+}
 @code {
     UserData user;
+    RoomsData db;
     [Parameter]
     [SupplyParameterFromQuery(Name = "code")]
     public string codeString { get; set; }
@@ -102,6 +109,9 @@
                     user = null;
                 }
             }
+
+            db = new RoomsData();
+            db = await _dbconnService.GetRoomsData(user.id);
         }
     }
 }
