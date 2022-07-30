@@ -12,7 +12,7 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
-        "HashCode": 457512061,
+        "HashCode": 1751424754,
         "Kind": "Components.Component",
         "Name": "Backrooms.Pages.Index",
         "AssemblyName": "Backrooms",
@@ -22,13 +22,23 @@
             "TagName": "Index"
           }
         ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "codeString",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "codeString"
+            }
+          }
+        ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "Backrooms.Pages.Index"
         }
       },
       {
-        "HashCode": 1406694268,
+        "HashCode": 732343586,
         "Kind": "Components.Component",
         "Name": "Backrooms.Pages.Index",
         "AssemblyName": "Backrooms",
@@ -38,42 +48,19 @@
             "TagName": "Backrooms.Pages.Index"
           }
         ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "codeString",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "codeString"
+            }
+          }
+        ],
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "Backrooms.Pages.Index",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -1681506808,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.App",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "App"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.App"
-        }
-      },
-      {
-        "HashCode": -1184353634,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.App",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Backrooms.App"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.App",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -170,6 +157,39 @@
           "Runtime.Name": "Components.None",
           "Common.TypeName": "Backrooms.Shared.MainLayout.Body",
           "Components.IsSpecialKind": "Components.ChildContent",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1681506808,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.App",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "App"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.App"
+        }
+      },
+      {
+        "HashCode": -1184353634,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.App",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Backrooms.App"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.App",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

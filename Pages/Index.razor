@@ -1,10 +1,27 @@
 ﻿@page "/"
+@using Backrooms.Data
+@using System.Text.Json;
+@inject UserDataService _UserService
 <PageTitle>Index</PageTitle>
-
 <MudText Typo="Typo.h3" GutterBottom="true">Backrooms</MudText>
 <MudText Class="mb-8">Bot pozwalający na tworzenie stref prywatnych!</MudText>
 <MudText Class="mb-8">
-    <MudFab Class="mb-3" Color="Color.Primary" Href="https://discord.com/api/oauth2/authorize?client_id=1000188282841350144&permissions=8&scope=applications.commands%20bot" Label="Dodaj bota" StartIcon="@Icons.Material.Filled.Download"></MudFab>
+    <MudFab Class="mb-3 mr-3" Color="Color.Primary"
+        Href="https://discord.com/api/oauth2/authorize?client_id=1000188282841350144&permissions=8&scope=applications.commands%20bot"
+        Label="Dodaj bota" StartIcon="@Icons.Material.Filled.Download"></MudFab>
+    @if(user != null){
+    <MudFab Class="mb-3 mr-3" Color="Color.Info"
+        Href="@configureURL(user.id)"
+        Label="Konfiguruj bota" StartIcon="@Icons.Material.Filled.Login"></MudFab>
+        <div Class="d-flex mb-3 align-items-center h-auto">
+            <MudAvatar Image="@user.avatar_url" /> &nbsp;&nbsp;<MudText class="align-middle" Typo="Typo.h6" style="line-height: 40px">@(user.username)#@(user.discriminator)</MudText>
+        </div>
+    } else {
+            <MudFab Class="mb-3" Color="Color.Info"
+        Href="https://discord.com/api/oauth2/authorize?client_id=1000188282841350144&redirect_uri=http%3A%2F%2Flocalhost%3A5000&response_type=code&scope=identify%20guilds%20guilds.members.read"
+        Label="Zaloguj sie" StartIcon="@Icons.Material.Filled.Login"></MudFab>
+    }
+
 </MudText>
 
 <MudDivider class="mb-10" />
@@ -14,43 +31,81 @@
         <MudText Typo="Typo.h5" GutterBottom="true">Szybka obsługa - Komendy</MudText>
     </MudContainer>
     <MudContainer MaxWidth="MaxWidth.Large" Class="pb-10" style="word-break: break-all;">
-        <MudTabs Outlined="true" Position="Position.Left" Rounded="true" Border="true"
-            ApplyEffectsToContainer="true" Class="mt-8" PanelClass="pa-6">
+        <MudTabs Outlined="true" Position="Position.Left" Rounded="true" Border="true" ApplyEffectsToContainer="true"
+            Class="mt-8" PanelClass="pa-6">
             <MudTabPanel Text="/starter">
                 <MudText>
                     <b>/starter - </b>utworzy kategorię z dwoma domyślnymi kanałami<br>
                     <b>&nbsp;• #how-to-use</b> - kanał z instrukcją dotyczącą tworzenia pokoi<br>
                     <b>&nbsp;• #utwórz</b> - kanał gdzie możesz stworzyć prywatny pokój<br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Dostęp do tej komendy mają tylko administratorzy.</MudChip><br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Dostęp do tej
+                        komendy mają tylko administratorzy.</MudChip><br>
                 </MudText>
             </MudTabPanel>
             <MudTabPanel Text="/add">
                 <MudText>
                     <b>/add &lt;user&gt; -</b> dodaje osobę do pokoju<br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko przez właściciela pokoju</MudChip><br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Secondary">Można korzystać tylko na kanale konfiguracyjnym danego pokoju</MudChip>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko
+                        przez właściciela pokoju</MudChip><br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Secondary">Można korzystać
+                        tylko na kanale konfiguracyjnym danego pokoju</MudChip>
                 </MudText>
             </MudTabPanel>
             <MudTabPanel Text="/remove">
                 <MudText>
                     <b>/remove &lt;user&gt; - </b>usuwa dostęp do prywatnej sesji danej osoby <br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko przez właściciela pokoju</MudChip><br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Secondary">Można korzystać tylko na kanale konfiguracyjnym danego pokoju</MudChip>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko
+                        przez właściciela pokoju</MudChip><br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Secondary">Można korzystać
+                        tylko na kanale konfiguracyjnym danego pokoju</MudChip>
                 </MudText>
             </MudTabPanel>
             <MudTabPanel Text="/list">
                 <MudText>
                     <b>/list - </b>wypisuje listę osób w danym pokoju<br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko przez właściciela pokoju</MudChip><br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Secondary">Można korzystać tylko na kanale konfiguracyjnym danego pokoju</MudChip>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko
+                        przez właściciela pokoju</MudChip><br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Secondary">Można korzystać
+                        tylko na kanale konfiguracyjnym danego pokoju</MudChip>
                 </MudText>
             </MudTabPanel>
             <MudTabPanel Text="/clear">
                 <MudText>
                     <b>/clear - </b>czyści wybraną ilość wiadomości<br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko przez właściciela pokoju</MudChip><br>
+                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko
+                        przez właściciela pokoju</MudChip><br>
                 </MudText>
             </MudTabPanel>
         </MudTabs>
     </MudContainer>
 </MudPaper>
+
+@code {
+    UserData user;
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "code")]
+    public string codeString { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (codeString != null)
+        {
+            string jsonString = await _UserService.GetToken(codeString);
+            DiscordToken jsonToken = JsonSerializer.Deserialize<DiscordToken>(jsonString);
+            if(jsonToken.access_token != null){
+                string jsonString2 = await _UserService.GetData(jsonToken);
+                UserData jsonUser = JsonSerializer.Deserialize<UserData>(jsonString2);
+                if(jsonUser.id != null){
+                    user = jsonUser;
+                    user.avatar_url = $"https://cdn.discordapp.com/avatars/{user.id}/{user.avatar}";
+                } else {
+                    user = null;
+                }
+            }
+        }
+    }
+
+    public string configureURL(string id){
+        return $"/konfiguruj/{id}";
+    }
+}
