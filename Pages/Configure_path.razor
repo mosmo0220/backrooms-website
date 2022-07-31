@@ -1,0 +1,73 @@
+@page "/konfiguruj/{path}"
+@using Backrooms.Data
+@inject dbconnService _dbconnService
+@inject IDialogService Dialog
+<PageTitle>Konfiguracja</PageTitle>
+@if (room != null)
+{
+    <MudText  Typo="Typo.h3" GutterBottom="true">
+        @room.name 
+        <MudFab Size="Size.Small" Color="Color.Dark" StartIcon="@Icons.Material.Filled.Edit" OnClick="@((e) => OpenDialog(topCenter))"/>
+        <MudFab Size="Size.Small" Color="Color.Success" StartIcon="@Icons.Material.Filled.Save" OnClick="SaveChanges"/>
+        <MudFab Link="/konfiguruj" Size="Size.Small" Color="Color.Primary" StartIcon="@Icons.Filled.ArrowBack" />
+    </MudText>
+    <MudText Typo="Typo.h6" GutterBottom="true">Kanały</MudText>
+    <MudSimpleTable Style="overflow-x: auto;">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Typ</th>
+                <th>Operacje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chat in room.chats)
+            {
+                <tr>
+                    <td><b>@chat.name</b></td>
+                    <td>@(@chat.type == "voice" ? "Głosowy" : "Tekstowy")</td>
+                    <td>
+                        <MudButton Class="mr-3 mb-3 mt-3" Variant="Variant.Filled" Color="Color.Info">Edytuj</MudButton>
+                        <MudButton Class="mb-3 mt-3"Variant="Variant.Filled" Color="Color.Error">Usuń</MudButton>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </MudSimpleTable>
+}
+else
+{
+    <MudProgressCircular Size="Size.Large" Color="Color.Primary" Indeterminate="true"
+    style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;" />
+}
+@code {
+    [Parameter]
+    public string Path { get; set; }
+    Rooms room { get; set; }
+    Rooms _room { get; set; }
+    DialogOptions topCenter = new DialogOptions() { Position = DialogPosition.TopCenter };
+    protected override async Task OnInitializedAsync()
+    {
+        room = await _dbconnService.GetCurrentRoom(Path);
+        _room = room;
+    } 
+    private void OpenDialog(DialogOptions options)
+    {
+        var parameters = new DialogParameters { ["name"]=room.name };
+        Dialog.Show<ChangeRoomNameDialog>("Zmiana nazwy pokoju", parameters, options);
+    }
+    public async void SaveChanges() {
+        if (room != _room)
+        {
+            Changes changes = new Changes();
+            changes.Room = room;
+            await _dbconnService.SaveChanges(changes);
+            _room = room;
+        }
+    }
+    public void ChangeCategoryName(string name)
+    {
+        room.name = name;
+    } 
+    
+}

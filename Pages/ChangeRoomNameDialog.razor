@@ -1,0 +1,14 @@
+<MudDialog>
+    <DialogContent>
+        <MudTextField @bind-Value="name" Label="Nazwa" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Color="Color.Primary" OnClick="Submit">Zamknij</MudButton>
+    </DialogActions>
+</MudDialog>
+@code {
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+    [Parameter]
+    public string name { get; set; }
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+}

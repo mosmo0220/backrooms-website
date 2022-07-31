@@ -12,39 +12,6 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
-        "HashCode": -1183670830,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.Pages.Index",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Index"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Pages.Index"
-        }
-      },
-      {
-        "HashCode": -1041681855,
-        "Kind": "Components.Component",
-        "Name": "Backrooms.Pages.Index",
-        "AssemblyName": "Backrooms",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "Backrooms.Pages.Index"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "Backrooms.Pages.Index",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": 4462208,
         "Kind": "Components.Component",
         "Name": "Backrooms.Pages._Logout",
@@ -78,6 +45,130 @@
         }
       },
       {
+        "HashCode": 288124086,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages.Index",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Index"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "position",
+            "TypeName": "MudBlazor.Position",
+            "IsEnum": true,
+            "Metadata": {
+              "Common.PropertyName": "position"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "isDesktop",
+            "TypeName": "System.Boolean",
+            "Metadata": {
+              "Common.PropertyName": "isDesktop"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages.Index"
+        }
+      },
+      {
+        "HashCode": -419335253,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages.Index",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Backrooms.Pages.Index"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "position",
+            "TypeName": "MudBlazor.Position",
+            "IsEnum": true,
+            "Metadata": {
+              "Common.PropertyName": "position"
+            }
+          },
+          {
+            "Kind": "Components.Component",
+            "Name": "isDesktop",
+            "TypeName": "System.Boolean",
+            "Metadata": {
+              "Common.PropertyName": "isDesktop"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages.Index",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 933262264,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages.ChangeRoomNameDialog",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "ChangeRoomNameDialog"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "name",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "name"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages.ChangeRoomNameDialog"
+        }
+      },
+      {
+        "HashCode": -1931809064,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages.ChangeRoomNameDialog",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Backrooms.Pages.ChangeRoomNameDialog"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "name",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "name"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages.ChangeRoomNameDialog",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": -685877667,
         "Kind": "Components.Component",
         "Name": "Backrooms.Pages.Configure",
@@ -107,6 +198,59 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "Backrooms.Pages.Configure",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": 305972865,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages.Configure_path",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Configure_path"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Path",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Path"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages.Configure_path"
+        }
+      },
+      {
+        "HashCode": -1678113564,
+        "Kind": "Components.Component",
+        "Name": "Backrooms.Pages.Configure_path",
+        "AssemblyName": "Backrooms",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "Backrooms.Pages.Configure_path"
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "Components.Component",
+            "Name": "Path",
+            "TypeName": "System.String",
+            "Metadata": {
+              "Common.PropertyName": "Path"
+            }
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "Backrooms.Pages.Configure_path",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -89857,8 +90001,18 @@
   "RootNamespace": "Backrooms",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Pages\\ChangeRoomNameDialog.razor",
+      "TargetPath": "Pages\\ChangeRoomNameDialog.razor",
+      "FileKind": "component"
+    },
+    {
       "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Pages\\_Logout.razor",
       "TargetPath": "Pages\\_Logout.razor",
+      "FileKind": "component"
+    },
+    {
+      "FilePath": "c:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Pages\\Configure_path.razor",
+      "TargetPath": "Pages\\Configure_path.razor",
       "FileKind": "component"
     },
     {

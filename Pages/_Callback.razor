@@ -6,6 +6,7 @@
 @inject dbconnService _dbconnService
 @inject NavigationManager _navManager
 
+
 <MudProgressCircular Size="Size.Large" Color="Color.Primary" Indeterminate="true" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;" />
 
 @code {
@@ -37,14 +38,15 @@
     {
         user = null;
         string _token = await GetCookie("token");
+        string userIP = await JSRuntime.InvokeAsync<string>("methods.GetIpAddress");
 
         if (_token == null)
         {
             _token = GenerateToken();
-            CreateCookie("token", _token, 1);
+            CreateCookie("token", _token, 4);
         }
 
-        Session session = await _dbconnService.GetSession(_token);
+        Session session = await _dbconnService.GetSession(_token, userIP);
         if (session != null)
         {
             user = session.user;
@@ -73,7 +75,8 @@
                 await _dbconnService.SaveSession(new Session()
                 {
                     user = user,
-                    token = token
+                    token = token,
+                    ipv4 = userIP
                 });
 
                 CreateCookie("token", token, 4);

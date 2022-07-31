@@ -4,9 +4,17 @@
 @using System.Text.Json
 @inject UserDataService _UserService
 @inject dbconnService _dbconnService
+@inject IHttpContextAccessor _test
 
 <PageTitle>Index</PageTitle>
-<MudText Typo="Typo.h3" GutterBottom="true">Backrooms</MudText>
+<MudText Typo="Typo.h3" GutterBottom="true">
+    Backrooms 
+    @if (!isDesktop){
+        <br>
+    }
+    <MudIconButton Icon="@Icons.Custom.Brands.Discord" Color="Color.Inherit" Link="https://discord.gg/apHpSwN6tV" Target="_blank" Size="Size.Large" />    
+    <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/kubek420/backrooms-bot" Target="_blank" Size="Size.Medium" />
+</MudText>
 <MudText Class="mb-8">Bot pozwalający na tworzenie stref prywatnych!</MudText>
 <MudText Class="mb-8">
     <MudFab Class="mb-3 mr-3" Color="Color.Primary"
@@ -36,51 +44,52 @@
 
 <MudPaper Height="auto" Width="100%">
     <MudContainer MaxWidth="MaxWidth.Large" Class="pt-10" style="word-break: break-all;">
-        <MudText Typo="Typo.h5" GutterBottom="true">Szybka obsługa - Komendy</MudText>
+        <MudText Typo="Typo.h5" GutterBottom="true">
+        Szybka obsługa 
+        @if (isDesktop) 
+        { 
+            <span>- Komendy</span> 
+        }
+        </MudText>
     </MudContainer>
     <MudContainer MaxWidth="MaxWidth.Large" Class="pb-10" style="word-break: break-all;">
-        <MudTabs Outlined="true" Position="Position.Left" Rounded="true" Border="true" ApplyEffectsToContainer="true"
-            Class="mt-8" PanelClass="pa-6">
-            <MudTabPanel Text="/starter">
+            <MudTabs Outlined="true" @bind-Position="position" Rounded="true" Border="true" ApplyEffectsToContainer="true" Class="mt-8" PanelClass="pa-6" AlwaysShowScrollButtons="true">
+                <MudTabPanel Text="/starter">
                 <MudText>
                     <b>/starter - </b>utworzy kategorię z dwoma domyślnymi kanałami<br>
                     <b>&nbsp;• #how-to-use</b> - kanał z instrukcją dotyczącą tworzenia pokoi<br>
                     <b>&nbsp;• #utwórz</b> - kanał gdzie możesz stworzyć prywatny pokój<br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Dostęp do tej
-                        komendy mają tylko administratorzy.</MudChip><br>
+                    <MudChip Icon="@Icons.Filled.Info" Size="Size.Small" Variant="Variant.Text" Color="Color.Warning">Dostęp mają tylko administratorzy.</MudChip><br>
                 </MudText>
             </MudTabPanel>
             <MudTabPanel Text="/add">
                 <MudText>
                     <b>/add &lt;user&gt; -</b> dodaje osobę do pokoju<br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko
+                    <MudChip Icon="@Icons.Filled.Info" Size="Size.Small" Variant="Variant.Text" Color="Color.Warning">Może być użyta
                         przez właściciela pokoju</MudChip><br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Secondary">Można korzystać
-                        tylko na kanale konfiguracyjnym danego pokoju</MudChip>
+                    <MudChip Icon="@Icons.Filled.Info" Size="Size.Small" Variant="Variant.Text" Color="Color.Secondary">Wyłącznie kanał konfiguracyjnym pokoju</MudChip>
                 </MudText>
             </MudTabPanel>
             <MudTabPanel Text="/remove">
                 <MudText>
                     <b>/remove &lt;user&gt; - </b>usuwa dostęp do prywatnej sesji danej osoby <br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko
+                    <MudChip Icon="@Icons.Filled.Info" Size="Size.Small" Variant="Variant.Text" Color="Color.Warning">Może być użyta
                         przez właściciela pokoju</MudChip><br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Secondary">Można korzystać
-                        tylko na kanale konfiguracyjnym danego pokoju</MudChip>
+                    <MudChip Icon="@Icons.Filled.Info"  Size="Size.Small" Variant="Variant.Text" Color="Color.Secondary">Wyłącznie kanał konfiguracyjnym pokoju</MudChip>
                 </MudText>
             </MudTabPanel>
             <MudTabPanel Text="/list">
                 <MudText>
                     <b>/list - </b>wypisuje listę osób w danym pokoju<br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko
+                    <MudChip Icon="@Icons.Filled.Info" Size="Size.Small" Variant="Variant.Text" Color="Color.Warning">Może być użyta
                         przez właściciela pokoju</MudChip><br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Secondary">Można korzystać
-                        tylko na kanale konfiguracyjnym danego pokoju</MudChip>
+                    <MudChip Icon="@Icons.Filled.Info"  Size="Size.Small" Variant="Variant.Text" Color="Color.Secondary">Wyłącznie kanał konfiguracyjnym pokoju</MudChip>
                 </MudText>
             </MudTabPanel>
             <MudTabPanel Text="/clear">
                 <MudText>
                     <b>/clear - </b>czyści wybraną ilość wiadomości<br>
-                    <MudChip Icon="@Icons.Filled.Info" Variant="Variant.Text" Color="Color.Warning">Może być użyta tylko
+                    <MudChip Icon="@Icons.Filled.Info" Size="Size.Small" Variant="Variant.Text" Color="Color.Warning">Może być użyta
                         przez właściciela pokoju</MudChip><br>
                 </MudText>
             </MudTabPanel>
@@ -90,6 +99,12 @@
 
 @code {
     UserData user;
+    int windowWidth;
+
+    [Parameter]
+    public Position position { get; set; }
+    [Parameter]
+    public bool isDesktop { get; set; }
     public string GenerateToken()
     {
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -108,11 +123,25 @@
         var test = await JSRuntime.InvokeAsync<string>("methods.GetCookie", name);
         return test;
     }
+    [JSInvokable("BrowserHasResized")]
+    public async Task BrowserHasResized()
+    {
+        windowWidth = await JSRuntime.InvokeAsync<int>("methods.GetWindowWidth");
+        await LayoutChange();
+        StateHasChanged();
+    }
+
+    async Task LayoutChange() {
+        position = windowWidth > 800 ? Position.Left : Position.Top;
+        isDesktop = windowWidth > 800;
+    }
 
     protected override async Task OnInitializedAsync()
     {
+        windowWidth=1000;
         user = null;
         string _token = await GetCookie("token");
+        string userIP = await JSRuntime.InvokeAsync<string>("methods.GetIpAddress");
 
         if (_token == null)
         {
@@ -120,11 +149,17 @@
             CreateCookie("token", _token, 4);
         }
 
-        Session session = await _dbconnService.GetSession(_token);
+        var lDotNetReference = DotNetObjectReference.Create(this);
+        JSRuntime.InvokeVoidAsync("GLOBAL.SetDotnetReference", lDotNetReference);
+
+        await JSRuntime.InvokeAsync<object>("methods.registerResizeCallback");
+        windowWidth = await JSRuntime.InvokeAsync<int>("methods.GetWindowWidth");
+        await LayoutChange();
+
+        Session session = await _dbconnService.GetSession(_token, userIP);
         if (session != null)
         {
             user = session.user;
         }
     }
 }
-

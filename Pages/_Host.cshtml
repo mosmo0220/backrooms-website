@@ -7,6 +7,11 @@
 
 <component type="typeof(App)" render-mode="Server" />
 <script>
+    var GLOBAL = {};
+    GLOBAL.DotNetReference = null;
+    GLOBAL.SetDotnetReference = function (pDotNetReference) {
+        GLOBAL.DotNetReference = pDotNetReference;
+    };
     window.methods = {
         CreateCookie: function (name, value, hours) {
             var expires;
@@ -32,6 +37,29 @@
         },
         RemoveCookie: function (name) {
             this.CreateCookie(name, "", -1);
-        }
+        },
+        GetWindowWidth: function () {
+            return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        },
+        GetIpAddress: async function () {
+            let res = await fetch('https://eromanowski.pl/ip.php')
+                .then((response) => response.json())
+                .then((data) => {
+                    return data
+                })
+            let r = "";    
+            for (let i = 0; i < res.length; i++) {
+                r += res[i].replaceAll("x", "");
+                if (i != res.length - 1) {
+                    r += ".";
+                }
+            }
+            return r;
+        },
+        registerResizeCallback: function () {
+            window.addEventListener("resize",  () => {
+                GLOBAL.DotNetReference.invokeMethodAsync('BrowserHasResized');
+            });
+        },
     }
 </script>
