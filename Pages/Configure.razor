@@ -7,7 +7,10 @@
 @inject NavigationManager _navManager
 
 <PageTitle>Konfiguracja</PageTitle>
-<MudText Typo="Typo.h3" GutterBottom="true">Konfiguracja</MudText>
+<MudText Typo="Typo.h3" GutterBottom="true">
+    Konfiguracja 
+    <MudFab Link="/" Size="Size.Small" Color="Color.Primary" StartIcon="@Icons.Filled.ArrowBack" />
+</MudText>
 @if (roomsList != null && roomsList.Count > 0)
 {
     <MudGrid class="mb-3">
@@ -28,7 +31,7 @@
 }
 else
 {
-    <MudText Typo="Typo.h5" GutterBottom="true">Nie posiadasz żadnych pokoi</MudText>
+    <MudText Typo="Typo.h5" GutterBottom="true">Nie posiadasz żadnych pokoi </MudText>
 }
 
 @code {

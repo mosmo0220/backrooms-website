@@ -1,60 +1,160 @@
 @page "/konfiguruj/{path}"
 @using Backrooms.Data
+@using System.Text
+@using System.Diagnostics
+@inject IJSRuntime JSRuntime
 @inject dbconnService _dbconnService
 @inject IDialogService Dialog
+@inject UserDataService _UserService
+@inject NavigationManager _navManager
+@inject ISnackbar Snackbar
+
 <PageTitle>Konfiguracja</PageTitle>
 @if (room != null)
 {
     <MudText  Typo="Typo.h3" GutterBottom="true">
         @room.name 
-        <MudFab Size="Size.Small" Color="Color.Dark" StartIcon="@Icons.Material.Filled.Edit" OnClick="@((e) => OpenDialog(topCenter))"/>
-        <MudFab Size="Size.Small" Color="Color.Success" StartIcon="@Icons.Material.Filled.Save" OnClick="SaveChanges"/>
+        <MudFab Size="Size.Small" Color="Color.Dark" StartIcon="@Icons.Material.Filled.Edit" OnClick="@((e) => OpenChangeNameDialog(topCenter))"/>
+        <MudFab Size="Size.Small" Color="Color.Success" StartIcon="@Icons.Material.Filled.Save" OnClick="@(() => SaveChanges())"/>
         <MudFab Link="/konfiguruj" Size="Size.Small" Color="Color.Primary" StartIcon="@Icons.Filled.ArrowBack" />
     </MudText>
     <MudText Typo="Typo.h6" GutterBottom="true">Kanały</MudText>
-    <MudSimpleTable Style="overflow-x: auto;">
+    <MudSimpleTable>
         <thead>
             <tr>
                 <th>Nazwa</th>
                 <th>Typ</th>
+                <th>Miejsca</th>
                 <th>Operacje</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach (var chat in room.chats)
+        <tbody Style="overflow:hidden; position:relative;">
+            @foreach (var chat in room.chats.Skip(1).Select((value, i) => new { i, value }))
             {
                 <tr>
-                    <td><b>@chat.name</b></td>
-                    <td>@(@chat.type == "voice" ? "Głosowy" : "Tekstowy")</td>
+                    <td><b>@chat.value.name</b></td>
+                    <td>@(@chat.value.type == "voice" ? "Głosowy" : "Tekstowy")</td>
                     <td>
-                        <MudButton Class="mr-3 mb-3 mt-3" Variant="Variant.Filled" Color="Color.Info">Edytuj</MudButton>
-                        <MudButton Class="mb-3 mt-3"Variant="Variant.Filled" Color="Color.Error">Usuń</MudButton>
+                        @(@chat.value.type == "voice" ? @chat.value.voice_max : "-")
+                    </td>
+                    <td>
+                        <MudButton Class="mr-3 mb-3 mt-3" Variant="Variant.Filled" Color="Color.Info" OnClick="@(() => isChangingNow[chat.i] = !isChangingNow[chat.i])">Edytuj</MudButton>
+                        <MudButton Class="mb-3 mt-3"Variant="Variant.Filled" Color="Color.Error" OnClick="@(() => RemoveChat(chat.value.channelid))">Usuń</MudButton>
                     </td>
                 </tr>
+                @if (isChangingNow[chat.i])
+                {
+                    <tr>
+                        <td><MudTextField @bind-Value="chat.value.name" Label="Nazwa" Variant="Variant.Outlined" Margin="Margin.Dense"></MudTextField></td>
+                        <td>-</td>
+                        <td>
+                            @if(@chat.value.type == "voice") 
+                            {
+                                <MudNumericField @bind-Value="chat.value.voice_max" Max="100" Min="0" Label="Miejsca" Variant="Variant.Outlined" Margin="Margin.Dense"/>
+                            } else {
+                                <span>-</span>
+                            } 
+                        </td>
+                        <td><MudButton Class="mb-3 mt-3" Variant="Variant.Filled" Color="Color.Success" OnClick="@(() => isChangingNow[chat.i] = !isChangingNow[chat.i])">Okej</MudButton></td>
+                    </tr>
+                }
             }
         </tbody>
     </MudSimpleTable>
 }
 else
 {
-    <MudProgressCircular Size="Size.Large" Color="Color.Primary" Indeterminate="true"
-    style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;" />
+    <MudProgressCircular Size="Size.Large" Color="Color.Primary" Indeterminate="true" style="position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;" />
 }
 @code {
     [Parameter]
     public string Path { get; set; }
     Rooms room { get; set; }
     Rooms _room { get; set; }
+    List<bool> isChangingNow { get; set; }
     DialogOptions topCenter = new DialogOptions() { Position = DialogPosition.TopCenter };
+    public string GenerateToken()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        var random = new Random();
+        return new string(Enumerable.Repeat(chars, 32)
+        .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+    private async void CreateCookie(string name, string value, int days)
+    {
+        var test = await JSRuntime.InvokeAsync<string>("methods.CreateCookie", name, value, days);
+    }
+
+    private async Task<string> GetCookie(string name)
+    {
+        var test = await JSRuntime.InvokeAsync<string>("methods.GetCookie", name);
+        return test;
+    }
+
     protected override async Task OnInitializedAsync()
     {
+        UserData user = null;
+        List<RoomsData> roomsList = null;
+
+        string _token = await GetCookie("token");
+        string userIP = await JSRuntime.InvokeAsync<string>("methods.GetIpAddress");
+
+        if (_token == null)
+        {
+            _token = GenerateToken();
+            CreateCookie("token", _token, 4);
+        }
+
+        Session session = await _dbconnService.GetSession(_token, userIP);
+        if (session != null)
+        {
+            user = session.user;
+            roomsList = await _dbconnService.GetRoomsData(user.id);
+            bool isOwner = false;
+            foreach (var item in roomsList)
+            {
+                if (item.category == Path)
+                {
+                    isOwner = true;
+                }
+            }
+            if (!isOwner) {
+                _navManager.NavigateTo("/konfiguruj");
+            }
+        }
+        else 
+        {
+            _navManager.NavigateTo("/");
+        }
+
         room = await _dbconnService.GetCurrentRoom(Path);
-        _room = room;
+        _room = new Rooms();
+        _room.id = room.id;
+        _room.name = room.name;
+        _room.chats = room.chats;
+
+        isChangingNow = new List<bool>();
+        for (int i = 0; i < room.chats.Count; i++)
+        {
+            isChangingNow.Add(false);
+        }
     } 
-    private void OpenDialog(DialogOptions options)
+
+    async Task OpenChangeNameDialog(DialogOptions options)
     {
         var parameters = new DialogParameters { ["name"]=room.name };
-        Dialog.Show<ChangeRoomNameDialog>("Zmiana nazwy pokoju", parameters, options);
+        var dialog = Dialog.Show<Configure_dialog_name>("Zmiana nazwy pokoju", parameters, options);
+        var result = await dialog.Result;
+        if(!result.Cancelled){
+            if(result.Data.ToString() != "")
+            {
+                if(result.Data.ToString().Length > 20){
+                    ChangeCategoryName(result.Data.ToString().Substring(0,20));
+                } else {
+                    ChangeCategoryName(result.Data.ToString());
+                }
+            }
+        }
     }
     public async void SaveChanges() {
         if (room != _room)
@@ -63,11 +163,17 @@ else
             changes.Room = room;
             await _dbconnService.SaveChanges(changes);
             _room = room;
+            Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
+            Snackbar.Add("Zmiany zostaną zapisane w ciągu minuty", Severity.Success);
         }
     }
     public void ChangeCategoryName(string name)
     {
         room.name = name;
     } 
-    
+
+    public void RemoveChat(string channelid)
+    {
+        room.chats.RemoveAll(c => c.channelid == channelid);
+    }
 }
