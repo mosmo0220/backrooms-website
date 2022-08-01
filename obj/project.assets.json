@@ -1333,19 +1333,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MOsmo\\.nuget\\packages\\": {}
+    "C:\\Users\\Kaude\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MOsmo\\Programing\\projects\\backrooms-website\\Backrooms.csproj",
+      "projectUniqueName": "C:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Backrooms.csproj",
       "projectName": "Backrooms",
-      "projectPath": "C:\\Users\\MOsmo\\Programing\\projects\\backrooms-website\\Backrooms.csproj",
-      "packagesPath": "C:\\Users\\MOsmo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MOsmo\\Programing\\projects\\backrooms-website\\obj\\",
+      "projectPath": "C:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\Backrooms.csproj",
+      "packagesPath": "C:\\Users\\Kaude\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Kaude\\Documents\\GitHub\\backrooms-website\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\MOsmo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Kaude\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1353,7 +1353,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1419,7 +1418,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

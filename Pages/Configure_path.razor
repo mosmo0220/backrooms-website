@@ -72,6 +72,7 @@ else
     Rooms room { get; set; }
     Rooms _room { get; set; }
     List<bool> isChangingNow { get; set; }
+    List<string> chatsIdToRemove { get; set; } = new List<string>();
     DialogOptions topCenter = new DialogOptions() { Position = DialogPosition.TopCenter };
     public string GenerateToken()
     {
@@ -161,6 +162,7 @@ else
         {
             Changes changes = new Changes();
             changes.Room = room;
+            changes.chatToRemove = chatsIdToRemove;
             await _dbconnService.SaveChanges(changes);
             _room = room;
             Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
@@ -175,5 +177,6 @@ else
     public void RemoveChat(string channelid)
     {
         room.chats.RemoveAll(c => c.channelid == channelid);
+        chatsIdToRemove.Add(channelid);
     }
 }

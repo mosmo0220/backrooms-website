@@ -42,5 +42,6 @@ namespace Backrooms.Data {
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public ObjectId id { get; set; }
         public Rooms Room { get; set; }
+        public List<string> chatToRemove { get; set;}
     }
 }
