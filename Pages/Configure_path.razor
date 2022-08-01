@@ -3,7 +3,7 @@
 @using System.Text
 @using System.Diagnostics
 @inject IJSRuntime JSRuntime
-@inject dbconnService _dbconnService
+@inject MongoConnectService _dbconnService
 @inject IDialogService Dialog
 @inject UserDataService _UserService
 @inject NavigationManager _navManager
@@ -133,6 +133,7 @@ else
         _room.id = room.id;
         _room.name = room.name;
         _room.chats = room.chats;
+        _room.category = room.category;
 
         isChangingNow = new List<bool>();
         for (int i = 0; i < room.chats.Count; i++)
@@ -164,7 +165,11 @@ else
             changes.Room = room;
             changes.chatToRemove = chatsIdToRemove;
             await _dbconnService.SaveChanges(changes);
-            _room = room;
+            _room = new Rooms();
+            _room.id = room.id;
+            _room.name = room.name;
+            _room.chats = room.chats;
+            _room.category = room.category;
             Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
             Snackbar.Add("Zmiany zostaną zapisane w ciągu minuty", Severity.Success);
         }

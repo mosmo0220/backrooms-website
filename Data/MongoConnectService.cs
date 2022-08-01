@@ -4,7 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Backrooms.Data {
-    public class dbconnService {
+    public class MongoConnectService {
         public async Task<List<RoomsData>> GetRoomsData(string id) {
             var client = new MongoClient(Environment.GetEnvironmentVariable("MONGODB_URI"));
             var database = client.GetDatabase("DiscordBackrooms");
