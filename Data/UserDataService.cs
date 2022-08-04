@@ -15,7 +15,7 @@ namespace Backrooms.Data
                     { "client_secret", "QYAIxINojHCRDpFpKWo1ldZJaWueUkjv" },
                     { "code", code },
                     { "grant_type", "authorization_code" },
-                    { "redirect_uri", "https://backrooms.azurewebsites.net/login-callback" },
+                    { "redirect_uri", "https://backrooms.asynctask.pl/login-callback" },
                     { "scope", "identify" },
                 };
 
