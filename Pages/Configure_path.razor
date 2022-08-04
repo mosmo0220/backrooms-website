@@ -97,12 +97,21 @@ else
     {
         public ChatType(string type)
         {
-            Type = type;
+            _Type = type;
         }
 
-        public readonly string Type;
-    } 
-    
+        public readonly string _Type;
+        
+        public override bool Equals(object o) {
+            var other = o as ChatType;
+            return other?._Type==_Type;
+        }
+        
+        public override int GetHashCode() => _Type?.GetHashCode() ?? 0;
+
+        public override string ToString() => _Type;
+    }
+
     public string GenerateToken()
     {
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -222,7 +231,7 @@ else
         {
             Chat newC = new Chat();
             newC.voice_max = 0;
-            if (newType.Type == "Tekstowy")
+            if (newType._Type == "Tekstowy")
             {
                 newC.type = "text";
             }
