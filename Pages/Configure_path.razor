@@ -59,6 +59,21 @@
                     </tr>
                 }
             }
+            <tr>
+                <td><MudTextField @bind-Value="newChat" Label="Nazwa"></MudTextField></td>
+                <td>
+                    <MudSelect @bind-Value="newType" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
+                        <MudSelectItem Value="@(new ChatType("Tekstowy"))"></MudSelectItem>
+                        <MudSelectItem Value="@(new ChatType("Głosowy"))"></MudSelectItem>
+                    </MudSelect>
+                </td>
+                <td>
+                    <span>-</span>
+                </td>
+                <td>
+                    <MudButton Class="mb-3 mt-3" Variant="Variant.Filled" Color="Color.Success" OnClick="@(() => AddChat())">Dodaj</MudButton>
+                </td>
+            </tr>
         </tbody>
     </MudSimpleTable>
 }
@@ -74,6 +89,20 @@ else
     List<bool> isChangingNow { get; set; }
     List<string> chatsIdToRemove { get; set; } = new List<string>();
     DialogOptions topCenter = new DialogOptions() { Position = DialogPosition.TopCenter };
+    
+    public string newChat { get; set; }
+    public ChatType newType { get; set; }
+
+    public class ChatType
+    {
+        public ChatType(string type)
+        {
+            Type = type;
+        }
+
+        public readonly string Type;
+    } 
+    
     public string GenerateToken()
     {
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -140,6 +169,8 @@ else
         {
             isChangingNow.Add(false);
         }
+
+        newType = new ChatType("Tekstowy");
     } 
 
     async Task OpenChangeNameDialog(DialogOptions options)
@@ -183,5 +214,29 @@ else
     {
         room.chats.RemoveAll(c => c.channelid == channelid);
         chatsIdToRemove.Add(channelid);
+    }
+
+    public async Task AddChat()
+    {
+        if (newChat.Length > 0)
+        {
+            Chat newC = new Chat();
+            newC.voice_max = 0;
+            if (newType.Type == "Tekstowy")
+            {
+                newC.type = "text";
+            }
+            else
+            {
+                newC.type = "voice";
+            }
+
+            newC.name = newChat;
+            newC.channelid = "new";
+            
+            room.chats.Add(newC);
+            
+            newType = new ChatType("Tekstowy");
+        }
     }
 }
