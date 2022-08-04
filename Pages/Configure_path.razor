@@ -247,6 +247,12 @@ else
             
             newType = new ChatType("Tekstowy");
             newChat = "";
+            
+            isChangingNow = new List<bool>();
+            for (int i = 0; i < room.chats.Count; i++)
+            {
+                isChangingNow.Add(false);
+            }
         }
     }
 }
