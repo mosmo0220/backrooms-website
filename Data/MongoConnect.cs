@@ -10,7 +10,7 @@ namespace Backrooms.Data {
         public string name { get; set; }
         public string owner { get; set; }
         public string category { get; set; }
-        public Dictionary<string, dynamic> settings { get; set; }
+        public Dictionary<string, bool> settings { get; set; }
     }
     [BsonIgnoreExtraElements]
     public class Session {
