@@ -9,7 +9,7 @@ namespace Backrooms.Data {
             var client = new MongoClient(Environment.GetEnvironmentVariable("MONGODB_URI"));
             var database = client.GetDatabase("DiscordBackrooms");
             var collection = database.GetCollection<RoomsData>("rooms");
-            var filter = Builders<RoomsData>.Filter.Eq("owner", id);
+            var filter = Builders<RoomsData>.Filter.Where(x => x.owner == id && x.settings.ContainsKey("isArchived") == false);
             var result = await collection.Find(filter).ToListAsync();
             return result;
         }
