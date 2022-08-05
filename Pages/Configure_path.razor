@@ -59,27 +59,30 @@
                     </tr>
                 }
             }
-        <tr>
-            <td><MudTextField @bind-Value="newChat" Label="Nazwa"></MudTextField></td>
-            <td>
-                <MudSelect @bind-Value="newType" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
-                    <MudSelectItem Value="@(new ChatType("Tekstowy"))"></MudSelectItem>
-                    <MudSelectItem Value="@(new ChatType("Głosowy"))"></MudSelectItem>
-                </MudSelect>
-            </td>
-            <td>
-                <span>-</span>
-            </td>
-            <td>
-                <MudButton Class="mb-3 mt-3" Variant="Variant.Filled" Color="Color.Success" OnClick="@(() => AddChat())">Dodaj</MudButton>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>@(() => chatsCount)<span>/</span>@(() => chatsCoutMax)</td>
-        </tr>
+            @if (chatsCount < chatsCoutMax)
+            {
+                <tr>
+                    <td><MudTextField @bind-Value="newChat" Label="Nazwa"></MudTextField></td>
+                    <td>
+                        <MudSelect @bind-Value="newType" Variant="Variant.Filled" AnchorOrigin="Origin.BottomCenter">
+                            <MudSelectItem Value="@(new ChatType("Tekstowy"))"></MudSelectItem>
+                            <MudSelectItem Value="@(new ChatType("Głosowy"))"></MudSelectItem>
+                        </MudSelect>
+                    </td>
+                    <td>
+                        <span>-</span>
+                    </td>
+                    <td>
+                        <MudButton Class="mb-3 mt-3" Variant="Variant.Filled" Color="Color.Success" OnClick="@(() => AddChat())">Dodaj</MudButton>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>@chatsCount<span>/</span>@chatsCoutMax</td>
+            </tr>
         </tbody>
     </MudSimpleTable>
 }

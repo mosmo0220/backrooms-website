@@ -9,8 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82a4a85e-2ec6-4f66-9484-510cf2ef26e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Backrooms/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Backrooms/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pages/Configure_path.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Configure_path.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Backrooms.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Backrooms.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Backrooms.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Backrooms.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/Backrooms.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/Backrooms.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +94,7 @@
       <workItem from="1659593893138" duration="1939000" />
       <workItem from="1659596057503" duration="4275000" />
       <workItem from="1659709211100" duration="316000" />
+      <workItem from="1659710143650" duration="272000" />
     </task>
     <servers />
   </component>
