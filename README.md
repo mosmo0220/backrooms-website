@@ -22,3 +22,5 @@ Site for manage Discord bot Backrooms: [backrooms.asynctask.pl](https://backroom
 
 - [@deyvhh](https://github.com/deyvhh)
 - [@mosmo0220](https://github.com/mosmo0220)
+
+[Discord Bot repository](https://github.com/deyvhh/backrooms-bot)
