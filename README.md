@@ -2,7 +2,7 @@
 
 Site for manage Discord bot Backrooms: [backrooms.asynctask.pl](https://backrooms.asynctask.pl/)
 
-![Logo](logo_link)
+![Logo](https://github.com/mosmo0220/backrooms-website/blob/main/AsyncTask.png)
 
 [![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
 
